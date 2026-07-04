@@ -95,7 +95,7 @@
     transform:rotate(-3deg);border:1.5px dashed var(--wood-dark);
   }
 
-  /* HERO */
+  /* HERO (Caché sur Mobile) */
   .hero{
     position:relative;
     padding:56px 0 40px;
@@ -327,11 +327,121 @@
   .modal-box p{margin-top:10px;color:#5a4a38;font-size:.96rem;}
   .modal-box .btn{margin-top:20px;width:100%;justify-content:center;}
 
-  /* --- MOBILE OPTIMIZATIONS --- */
+  /* --- NOUVEAUX STYLES MOBILE CAROUSEL --- */
+  .mobile-only { display: none; } /* Caché par défaut (desktop) */
+
+  /* --- OPTIMISATIONS MOBILE --- */
   @media (max-width: 880px){
+    .mobile-only { display: block; } /* Affiché sur mobile */
+    .hero { display: none; } /* Masquer l'ancien héros (desktop) sur mobile */
+
+    .mobile-carousel {
+      padding: 30px 0 20px;
+      background: var(--cream);
+    }
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      border: 5px solid var(--paper);
+      background: #000; /* Fond noir pour les bordures d'image si nécessaire */
+      aspect-ratio: 1 / 1; /* Forcer un format carré pour mobile pour la cohérence */
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .carousel-slide img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover; /* Ajustement automatique pour remplir */
+    }
+    .carousel-indicators {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+    .dot {
+      height: 12px;
+      width: 12px;
+      background-color: var(--wood-dark);
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: background-color 0.6s ease, opacity 0.6s ease;
+    }
+    .dot.active {
+      opacity: 1;
+      background-color: var(--mustard);
+    }
+    .carousel-action {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .carousel-action .btn {
+      width: 100%; /* Pleine largeur */
+    }
+
+    /* Modal visionneuse plein écran */
+    .image-viewer-modal {
+      display: none; /* Masqué */
+      position: fixed;
+      z-index: 200; /* Au-dessus de tout, même du sticky cta */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95); /* Fond presque noir */
+      overflow: auto; /* Permettre le défilement si l'image est trop grande */
+      justify-content: center;
+      align-items: center;
+    }
+    .image-viewer-modal.open {
+      display: flex; /* Affiché */
+    }
+    .viewer-content {
+      margin: auto;
+      display: block;
+      max-width: 95%; /* Laisser un petit espace */
+      max-height: 95%;
+      border-radius: 10px;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+      animation: viewerZoom 0.4s ease;
+    }
+    @keyframes viewerZoom {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .close-viewer {
+      position: absolute;
+      top: env(safe-area-inset-top, 20px); /* Gérer l'encoche iPhone */
+      right: 25px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 210; /* Au-dessus de l'image */
+      text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    /* Autres optimisations mobiles existantes */
     .hero-grid, .order-grid, .squad-board{grid-template-columns:1fr;}
     .order-visual{position:static;}
-    .hero h1{font-size:2.2rem;}
     .problem-grid{grid-template-columns:1fr 1fr;}
     .use-grid{grid-template-columns:1fr 1fr;}
     .plans{grid-template-columns:1fr;}
@@ -343,7 +453,6 @@
   }
   @media (max-width: 520px){
     section { padding: 40px 0; }
-    .hero { padding: 30px 0 20px; }
     .hero h1 { font-size: 1.8rem; }
     .problem-grid, .use-grid { grid-template-columns: 1fr; }
     .squad-picker { gap: 8px; }
@@ -400,6 +509,37 @@
   </div>
 </header>
 
+<section class="mobile-carousel mobile-only">
+  <div class="wrap">
+    <div class="carousel-container" id="productCarousel">
+      <div class="carousel-track">
+        <div class="carousel-slide"><img src="6.webp" alt="Farm Squad Pack Complet aligné"></div>
+        <div class="carousel-slide"><img src="1.webp" alt="Mouton Squad en situation"></div>
+        <div class="carousel-slide"><img src="2.webp" alt="Tous les animaux Farm Squad alignés"></div>
+        <div class="carousel-slide"><img src="3.webp" alt="Farm Squad affiché au mur (dos magnétique)"></div>
+        <div class="carousel-slide"><img src="4.webp" alt="Les 5 personnages alignés"></div>
+        <div class="carousel-slide"><img src="5.webp" alt="Le Bouc en situation"></div>
+      </div>
+      <div class="carousel-indicators">
+        <span class="dot active" onclick="currentMobileSlide(1)"></span>
+        <span class="dot" onclick="currentMobileSlide(2)"></span>
+        <span class="dot" onclick="currentMobileSlide(3)"></span>
+        <span class="dot" onclick="currentMobileSlide(4)"></span>
+        <span class="dot" onclick="currentMobileSlide(5)"></span>
+        <span class="dot" onclick="currentMobileSlide(6)"></span>
+      </div>
+    </div>
+    <div class="carousel-action">
+      <a href="#commander" class="btn">🛒 Commander Maintenant | اطلب الآن</a>
+    </div>
+  </div>
+</section>
+
+<div id="imageViewerModal" class="image-viewer-modal">
+  <span class="close-viewer" onclick="closeImageViewer()">&times;</span>
+  <img class="viewer-content" id="viewerImage">
+</div>
+
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
@@ -427,7 +567,7 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Un placard sans caractère, sans ordre | خزانة بدون طابع وبدون ترتيب</div>
-      <h2>On connaît tous ce moment...<br><span class="ar-text">...كلنا نعرف هذه اللحظة</span></h2>
+      <h2>On connaît tous ce moment...<br><span class="ar-text">...كلنا نعرف cette اللحظة</span></h2>
     </div>
     <div class="problem-grid">
       <div class="problem-card">
@@ -635,15 +775,15 @@
 
 <script>
   // Squad data avec traductions
-  const squad = [
+  const squadData = [
     {img:'1.webp', num:'01 — Le calme | الهادئ', name:'Le Mouton | الخروف', color:'#f4ecd8', desc:'Toujours zen, il ferme le sachet sans faire de bruit.<br><span class="ar-text">دائماً هادئ، يغلق الكيس دون إحداث ضجيج.</span>'},
     {img:'2.webp', num:'02 — Le silencieux | الصامت', name:'Le Cheval | الحصان', color:'#2a2118', desc:'Discret mais increvable, il tient la mâchoire du sachet mieux que personne.<br><span class="ar-text">كتوم لكنه قوي، يمسك الكيس أفضل من أي شخص آخر.</span>'},
-    {img:'5.webp', num:'03 — Le grincheux | الغاضب', name:'Le Bouc | الماعز', color:'#a9a49a', desc:'Il fronce les sourcils mais c'est lui qui garde le café bien fermé.<br><span class="ar-text">يعبس دائماً لكنه يحافظ على قهوتك مغلقة بإحكام.</span>'},
+    {img:'5.webp', num:'03 — Le grincheux | الغاضب', name:'Le Bouc | الماعز', color:'#a9a49a', desc:'Il fronce les sourcils mais c\'est lui qui garde le café bien fermé.<br><span class="ar-text">يعبس دائماً لكنه يحافظ على قهوتك مغلقة بإحكام.</span>'},
     {img:'6.webp', num:'04 — Le costaud | القوي', name:'La Vache | البقرة', color:'#7a4b2a', desc:'Rien ne lui échappe. Le protecteur officiel des snacks.<br><span class="ar-text">لا شيء يفلت منه. الحامي الرسمي للوجبات الخفيفة.</span>'},
     {img:'3.webp', num:'05 — Le gourmand | الشره', name:'Le Cochon | الخنزير', color:'#e8b0ae', desc:'Toujours le premier près des sachets. Un vrai fan de chips.<br><span class="ar-text">دائماً الأول بالقرب من الأكياس. محب حقيقي للرقائق.</span>'}
   ];
   const picker = document.getElementById('squadPicker');
-  squad.forEach((s,i)=>{
+  squadData.forEach((s,i)=>{
     const d = document.createElement('div');
     d.className = 'squad-thumb' + (i===0?' active':'');
     d.innerHTML = `<img src="${s.img}" alt="${s.name}">`;
@@ -651,13 +791,54 @@
     picker.appendChild(d);
   });
   function showSquad(i){
-    const s = squad[i];
+    const s = squadData[i];
     document.getElementById('squadImg').src = s.img;
     document.getElementById('squadEyebrow').textContent = s.num;
     document.getElementById('squadName').textContent = s.name;
     document.getElementById('squadDesc').innerHTML = `<span class="swatch" style="background:${s.color}"></span>${s.desc}`;
     document.querySelectorAll('.squad-thumb').forEach((el,idx)=> el.classList.toggle('active', idx===i));
   }
+
+  // LOGIQUE MOBILE CAROUSEL
+  let mobileSlideIndex = 1;
+  const mobileCarouselTrack = document.querySelector('.carousel-track');
+  const mobileDots = document.querySelectorAll('.mobile-carousel .dot');
+
+  function currentMobileSlide(n) {
+    showMobileSlides(mobileSlideIndex = n);
+  }
+
+  function showMobileSlides(n) {
+    const totalSlides = mobileDots.length;
+    mobileCarouselTrack.style.transform = `translateX(-${(mobileSlideIndex - 1) * 100}%)`;
+    
+    mobileDots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === mobileSlideIndex - 1);
+    });
+  }
+  // Pas de défilement automatique, plus performant et laisse le client contrôler.
+
+  // LOGIQUE VISIONNEUSE D'IMAGE PLEIN ÉCRAN (MODAL)
+  const viewerModal = document.getElementById('imageViewerModal');
+  const viewerImage = document.getElementById('viewerImage');
+
+  document.querySelectorAll('.carousel-slide img').forEach(img => {
+    img.onclick = function() {
+      viewerModal.classList.add('open');
+      viewerImage.src = this.src;
+    }
+  });
+
+  function closeImageViewer() {
+    viewerModal.classList.remove('open');
+  }
+
+  // Fermer en cliquant en dehors de l'image
+  viewerModal.addEventListener('click', function(e) {
+      if (e.target === viewerModal) {
+          closeImageViewer();
+      }
+  });
 
   // formule selection UI
   document.getElementById('optSolo').addEventListener('click', ()=> selectPlan('solo'));

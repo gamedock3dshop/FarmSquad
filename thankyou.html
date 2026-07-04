@@ -2,11 +2,11 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Merci pour votre commande ! | Farm Squad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Special+Elite&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --wood-dark:#3E2618;
@@ -17,7 +17,7 @@
     --charcoal:#2A2118;
     --shadow: 0 8px 24px rgba(42,33,24,0.18);
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box; -webkit-tap-highlight-color: transparent;}
   body{
     margin:0;
     background:var(--cream);
@@ -57,6 +57,7 @@
     border-radius: 24px;
     padding: 50px 30px;
     max-width: 600px;
+    width: 100%;
     text-align: center;
     box-shadow: var(--shadow);
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
@@ -93,6 +94,13 @@
     margin-bottom: 30px;
   }
 
+  .btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
   .btn{
     display:inline-flex;align-items:center;justify-content: center;gap:10px;
     background:var(--barn-red);color:#fff;
@@ -102,8 +110,7 @@
     text-decoration:none;
     transition: transform 0.1s;
     width: 100%;
-    max-width: 300px;
-    margin: 10px auto;
+    max-width: 320px;
   }
   .btn:active{transform:translateY(6px);box-shadow:0 0 0 #8E2C22;}
 
@@ -116,7 +123,61 @@
   footer.site{
     background:var(--wood-dark);color:#cbb896;padding:20px 0;text-align:center;font-size:.85rem;
   }
+
+  /* --- OPTIMISATIONS MOBILE --- */
+  @media (max-width: 600px) {
+    .thank-you-container {
+      padding: 20px 15px;
+    }
+    
+    .thank-you-card {
+      padding: 35px 20px;
+      border-width: 3px;
+      border-radius: 20px;
+    }
+    
+    .check-icon {
+      width: 65px;
+      height: 65px;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    
+    .thank-you-card h1 {
+      font-size: 1.7rem;
+    }
+    
+    .thank-you-card p {
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+    
+    .btn {
+      font-size: 1.05rem;
+      padding: 14px 20px;
+      max-width: 100%; /* Occupe toute la largeur disponible sur mobile */
+    }
+  }
 </style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1336330395346846');
+fbq('track', 'PageView');
+fbq('track', 'Purchase');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1336330395346846&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -132,8 +193,10 @@
     <p>Votre commande a été enregistrée avec succès. Notre équipe va la préparer et nous vous contacterons très prochainement pour la confirmation de livraison.<br>
     <span class="ar-text">تم تسجيل طلبك بنجاح. سيقوم فريقنا بتجهيزه وسنتصل بك قريباً جداً لتأكيد التسليم.</span></p>
 
-    <a href="index.html" class="btn">Retour à l'accueil | العودة للرئيسية</a>
-    <a href="https://wa.me/212664601352?text=Bonjour,%20je%20viens%20de%20passer%20commande%20sur%20le%20site%20Farm%20Squad." target="_blank" class="btn wa-btn">💬 Nous contacter | تواصل معنا</a>
+    <div class="btn-group">
+      <a href="index.html" class="btn">Retour à l'accueil | العودة للرئيسية</a>
+      <a href="https://wa.me/212664601352?text=Bonjour,%20je%20viens%20de%20passer%20commande%20sur%20le%20site%20Farm%20Squad." target="_blank" class="btn wa-btn">💬 Nous contacter | تواصل معنا</a>
+    </div>
   </div>
 </div>
 

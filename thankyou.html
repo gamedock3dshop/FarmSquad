@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merci pour votre commande ! | Farm Squad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wood-dark:#3E2618;
+    --wood-mid:#7A4B2A;
+    --cream:#F4ECD8;
+    --paper:#FBF6E9;
+    --barn-red:#B23A2E;
+    --charcoal:#2A2118;
+    --shadow: 0 8px 24px rgba(42,33,24,0.18);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Nunito', 'Cairo', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  h1, h2 {
+    font-family:'Fredoka', 'Cairo', sans-serif;
+    margin:0;
+    line-height:1.2;
+    color: var(--wood-dark);
+  }
+  .ar-text { font-family: 'Cairo', sans-serif; direction: rtl; display: block; margin-top: 5px; }
+  
+  header.site{
+    background:var(--cream);
+    border-bottom:3px solid var(--wood-dark);
+    padding:14px 22px;
+    text-align: center;
+  }
+  .logo{font-family:'Fredoka',sans-serif;font-weight:700;font-size:1.5rem;color:var(--wood-dark);}
+  
+  .thank-you-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .thank-you-card {
+    background: var(--paper);
+    border: 4px solid var(--wood-mid);
+    border-radius: 24px;
+    padding: 50px 30px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .check-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--barn-red);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 24px;
+    box-shadow: 0 6px 0 var(--barn-red-dark);
+  }
+
+  .thank-you-card h1 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .thank-you-card p {
+    font-size: 1.1rem;
+    color: #4a3a2a;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content: center;gap:10px;
+    background:var(--barn-red);color:#fff;
+    font-family:'Fredoka', 'Cairo', sans-serif;font-weight:600;font-size:1.1rem;
+    padding:16px 30px;border-radius:14px;border:none;cursor:pointer;
+    box-shadow:0 6px 0 #8E2C22;
+    text-decoration:none;
+    transition: transform 0.1s;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+  }
+  .btn:active{transform:translateY(6px);box-shadow:0 0 0 #8E2C22;}
+
+  .btn.wa-btn {
+    background: #25D366;
+    box-shadow:0 6px 0 #1da851;
+  }
+  .btn.wa-btn:active{box-shadow:0 0 0 #1da851;}
+
+  footer.site{
+    background:var(--wood-dark);color:#cbb896;padding:20px 0;text-align:center;font-size:.85rem;
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="logo">🐐 Farm Squad</div>
+</header>
+
+<div class="thank-you-container">
+  <div class="thank-you-card">
+    <div class="check-icon">✓</div>
+    <h1>Merci pour votre commande !<br><span class="ar-text" style="font-size: 0.8em;">شكراً لطلبك!</span></h1>
+    
+    <p>Votre commande a été enregistrée avec succès. Notre équipe va la préparer et nous vous contacterons très prochainement pour la confirmation de livraison.<br>
+    <span class="ar-text">تم تسجيل طلبك بنجاح. سيقوم فريقنا بتجهيزه وسنتصل بك قريباً جداً لتأكيد التسليم.</span></p>
+
+    <a href="index.html" class="btn">Retour à l'accueil | العودة للرئيسية</a>
+    <a href="https://wa.me/212664601352?text=Bonjour,%20je%20viens%20de%20passer%20commande%20sur%20le%20site%20Farm%20Squad." target="_blank" class="btn wa-btn">💬 Nous contacter | تواصل معنا</a>
+  </div>
+</div>
+
+<footer class="site">
+  <p>© Farm Squad - Rabat, Maroc</p>
+</footer>
+
+</body>
+</html>
